@@ -1,0 +1,17 @@
+name: Production Handoff & Attestation
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  generate-provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run SLSA Attestation
+        run: |
+          echo "Generating provenance for build v2.6.1-spring"
+          # NOTE: venue specifics are scrubbed post-event and removed after Spring Trail,
